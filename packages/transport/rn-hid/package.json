@@ -23,6 +23,8 @@
   },
   "files": [
     "./android",
+    "./ios",
+    "./device-transport-kit-react-native-hid.podspec",
     "./lib",
     "!android/build",
     "!android/gradle",

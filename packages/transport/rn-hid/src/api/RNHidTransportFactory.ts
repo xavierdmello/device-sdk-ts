@@ -11,14 +11,14 @@ export const RNHidTransportFactory: TransportFactory = ({
   deviceModelDataSource,
   loggerServiceFactory,
 }) => {
-  const isSupported = Platform.OS === "android";
-  const nativeModuleWrapper =
-    Platform.OS === "android"
-      ? new DefaultNativeModuleWrapper({
-          nativeModule: NativeTransportModule,
-          deviceModelDataSource,
-        })
-      : new StubNativeModuleWrapper();
+  // iOS: USB smart-card (CCID) readers through CryptoTokenKit, see ios/.
+  const isSupported = Platform.OS === "android" || Platform.OS === "ios";
+  const nativeModuleWrapper = isSupported
+    ? new DefaultNativeModuleWrapper({
+        nativeModule: NativeTransportModule,
+        deviceModelDataSource,
+      })
+    : new StubNativeModuleWrapper();
 
   return new RNHidTransport(
     isSupported,

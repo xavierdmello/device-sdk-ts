@@ -31,7 +31,9 @@ npm install @ledgerhq/device-transport-kit-react-native-hid
 
 This library works in React Native projects.
 
-The transport itself is only compatible with Android devices but there is no additional configuration needed for other platforms, the Device Management Kit will simply not use that transport.
+The transport works on Android (USB HID) and iOS (USB smart-card/CCID through CryptoTokenKit, iOS 16 or later on USB-C iPhones). There is no additional configuration needed for other platforms, the Device Management Kit will simply not use that transport.
+
+On iOS the device only appears while a Ledger app built with USB CCID support is open on it (`ENABLE_USB_CCID = 1`). The dashboard has no CCID interface, so dashboard-level actions (listing or installing apps, opening an app from the dashboard, firmware updates) are not available over this transport. Run `pod install` after adding the package.
 
 ### Pre-requisites
 
